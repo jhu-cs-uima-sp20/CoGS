@@ -26,7 +26,7 @@
         android:layout_width="0dp"
         android:layout_height="144dp"
         android:layout_marginStart="35dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="35dp"
         android:background="@color/colorPrimaryDark"
         android:padding="25dp"
@@ -41,9 +41,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="45dp"
         android:layout_marginEnd="35dp"
         android:background="@color/colorPrimaryDark"
+        android:elevation="9dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,17 +57,15 @@
             android:layout_marginStart="25dp"
             android:layout_marginTop="25dp"
             android:layout_marginEnd="25dp">
-        <EditText
-            android:id="@+id/emailText"
-            style="@style/inputField"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="45dp"
-            android:layout_marginRight="25dp"
-            android:ems="10"
-            android:hint="Email"
-            android:inputType="textEmailAddress" />
+
+            <EditText
+                android:id="@+id/emailText"
+                style="@style/inputField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Email"
+                android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -81,7 +80,6 @@
                 android:id="@+id/passwordText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="228dp"
                 android:ems="10"
                 android:hint="Password"
                 android:inputType="textPassword" />
@@ -89,6 +87,7 @@
 
         <Button
             android:id="@+id/loginBtn"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
@@ -102,7 +101,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
-        android:text="Sign-Up?"
+        android:text="@string/signup"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

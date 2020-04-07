@@ -21,6 +21,7 @@ public class SignUpActivity extends AppCompatActivity {
     private TextView email;
     private TextView password;
     private TextView confirmPass;
+    private TextView loginText;
     private Button signUpBtn;
     private FirebaseAuth auth;
     @Override
@@ -32,7 +33,17 @@ public class SignUpActivity extends AppCompatActivity {
         password = findViewById(R.id.passwordSignUp);
         confirmPass = findViewById(R.id.passwordConfirm);
         signUpBtn = findViewById(R.id.signUpBtn);
+        loginText = findViewById(R.id.loginText);
         auth = FirebaseAuth.getInstance();
+
+        loginText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            }
+        });
 
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
