@@ -56,6 +56,7 @@ public class SearchGroupActivity extends AppCompatActivity {
                     Toast.makeText(SearchGroupActivity.this, "Please enter a course name", Toast.LENGTH_SHORT).show();
                 }
                 else{
+                    courseId.replace(".", "");
                     groupDescriptionList.clear();
                     mAdapter.notifyDataSetChanged();
                     getCourseGroups(courseId);
@@ -66,7 +67,7 @@ public class SearchGroupActivity extends AppCompatActivity {
     }
 
     public void getCourseGroups(final String courseId){
-        courseId.replace(".", "");
+        //courseId.replace(".", "");
         courseRef = FirebaseDatabase.getInstance().getReference().child("Courses");
         courseRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -129,14 +130,8 @@ public class SearchGroupActivity extends AppCompatActivity {
             });
         }
 
-        //updateRecyclerView(groupDescriptionList);
     }
-/*
-    public void updateRecyclerView(ArrayList<GroupDescription> groups){
-        mAdapter = new GroupAdapter(groups);
-        rv.setAdapter(mAdapter);
-        rv.showContextMenu();
-    }*/
+
 }
 
 class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.MyViewHolder> {
