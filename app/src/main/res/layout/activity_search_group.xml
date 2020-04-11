@@ -22,7 +22,7 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/searchToolbar"
-        android:layout_width="409dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
