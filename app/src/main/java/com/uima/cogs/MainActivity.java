@@ -15,6 +15,8 @@ import android.widget.FrameLayout;
 
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.bottomnavigation.BottomNavigationMenu;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private Fragment homeFeedFrag;
     private FrameLayout fragment_container;
     private Toolbar toolbar;
+    private BottomNavigationView bottomNavigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,17 +49,41 @@ public class MainActivity extends AppCompatActivity {
         }
 
     toolbar = findViewById(R.id.main_toolbar);
+
+
+       toolbar.setTitle("Home Feed");
     setSupportActionBar(toolbar);
 
-       loadView(0);
-        groupPageBtn = findViewById(R.id.groupPageBtn);
+        bottomNavigation = findViewById(R.id.bottom_navigation);
 
-        groupPageBtn.setOnClickListener(new View.OnClickListener() {
+    groupPageBtn = findViewById(R.id.groupPageBtn);
+
+    groupPageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadView(1);
-            }
-        });
+                loadView(1); }
+    });
+    loadView(0);
+
+        BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener =
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.nav_group:
+                                loadView(1);
+                                return true;
+                            case R.id.nav_home:
+                                loadView(0);
+                                return true;
+                            case R.id.nav_liked:
+                                loadView(2);
+                                return true;
+                        }
+                        return false;
+                    }
+                };
+
+
     }
 
     @Override

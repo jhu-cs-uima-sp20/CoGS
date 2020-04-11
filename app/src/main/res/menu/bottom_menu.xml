@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_group"
+        android:icon="@drawable/ic_group_white_24dp"
+        android:title="Groups" />
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_home_white_24dp"
+        android:title="Home" />
+    <item
+        android:id="@+id/nav_liked"
+        android:icon="@drawable/ic_liked_white_24dp"
+        android:title="Liked" />
+</menu>
