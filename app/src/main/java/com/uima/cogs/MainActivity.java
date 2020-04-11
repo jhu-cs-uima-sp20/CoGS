@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
                     switch (item.getItemId()) {
                         case R.id.nav_group:
                             loadView(1);
-                            Toast.makeText(getApplicationContext(), "TEST", Toast.LENGTH_LONG).show();
                             return true;
                         case R.id.nav_home:
                             loadView(0);
