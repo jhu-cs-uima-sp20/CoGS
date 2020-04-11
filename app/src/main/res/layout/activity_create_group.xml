@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".CreateGroupActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/createGroupToolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="?homeAsUpIndicator" />
+
     <EditText
         android:id="@+id/groupCourse"
         android:layout_width="wrap_content"

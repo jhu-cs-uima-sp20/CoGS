@@ -2,6 +2,7 @@ package com.uima.cogs;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,6 +32,8 @@ public class CreateGroupActivity extends AppCompatActivity {
     private Button createBtn;
     private FirebaseAuth auth;
     private DatabaseReference fireData;
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +46,8 @@ public class CreateGroupActivity extends AppCompatActivity {
         groupName = findViewById(R.id.groupName);
         createBtn = findViewById(R.id.createGroupBtn);
 
+        toolbar = findViewById(R.id.createGroupToolbar);
+
         auth = FirebaseAuth.getInstance();
         fireData = FirebaseDatabase.getInstance().getReference();
 
@@ -50,6 +55,14 @@ public class CreateGroupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 storeNewGroup();
+                finish();
+            }
+        });
+
+        toolbar.setTitle("Create Group");
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 finish();
             }
         });
