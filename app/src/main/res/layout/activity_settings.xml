@@ -33,7 +33,7 @@
             android:layout_height="200dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="44dp"
-            android:srcCompat="@drawable/ic_launcher_background"
+            android:src="@drawable/ic_launcher_background"
             app:c_background_color="@color/colorPrimary"
             app:c_border="true"
             app:c_border_color="#4A97E4"
@@ -47,7 +47,7 @@
             android:id="@+id/imageButtonEdit"
             android:layout_width="74dp"
             android:layout_height="66dp"
-            android:srcCompat="@drawable/ic_add_24px" />
+            android:src="@drawable/ic_add_24px" />
 
         <TextView
             android:id="@+id/textView"

@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private FrameLayout fragment_container;
     private Toolbar toolbar;
     private BottomNavigationView bottomNavigation;
+    private int curView = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +51,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     toolbar = findViewById(R.id.main_toolbar);
-
-
-       toolbar.setTitle("Home Feed");
+    toolbar.setTitle("Home Feed");
     setSupportActionBar(toolbar);
 
     bottomNavigation = findViewById(R.id.bottom_navigation);
@@ -83,7 +82,22 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+        switch(curView) {
+            case 0:
+                getMenuInflater().inflate(R.menu.main_menu, menu);
+                return true;
+            case 1:
+                getMenuInflater().inflate(R.menu.main_groups_menu, menu);
+                return true;
+            case 2:
+                getMenuInflater().inflate(R.menu.main__group_detail_menu, menu);
+                return true;
+            case 3:
+                getMenuInflater().inflate(R.menu.main__group_detail_menu, menu);
+                return true;
+                //for detailed group view
+            default:;
+        }
         return true;
     }
 
@@ -98,6 +112,10 @@ public class MainActivity extends AppCompatActivity {
         } else if (id == R.id.searchIcon) {
             Intent intent = new Intent(MainActivity.this, SearchGroupActivity.class);
             startActivity(intent);
+            return true;
+        } else if (id == R.id.groupFilterIcon) {
+            //For filter groups
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -109,17 +127,21 @@ public class MainActivity extends AppCompatActivity {
             case 0:
                 transaction.replace(R.id.fragment_container, homeFeedFrag).commit();
                 toolbar.setTitle("Home Feed");
+                curView = 0;
                 break;
             case 1:
                 transaction.replace(R.id.fragment_container, groupFrag).commit();
                 toolbar.setTitle("Groups");
+                curView = 1;
                 break;
-            case 2:
+            case 2: //Implement later
                 //transaction.replace(R.id.fragment_container, groupFrag).commit();
                 toolbar.setTitle("Liked");
+                curView = 2;
                 break;
             default:;
         }
+        invalidateOptionsMenu();
     }
 
 }
