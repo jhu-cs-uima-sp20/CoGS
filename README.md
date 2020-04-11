@@ -13,6 +13,7 @@ Animations for the bottom navigation and better transitions will be worked on fu
 The liked tab works but is disabled since it will be implemented later. 
 
 Implementation 
+
 Login Page: The implementation for this page has been complete. If a user already has an account they will be able to login with their credentials (user and password). The design for the page has been complete. Here is the login information for testing purposes: Email: Aly123@gmail.com, Password: helloworld
 
 Sign-Up Page: Implementation and design for this page have been completed. Users can create an account using their email and set-up a password.
