@@ -45,19 +45,18 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
 
+    toolbar = findViewById(R.id.main_toolbar);
+    setSupportActionBar(toolbar);
+
        loadView(0);
         groupPageBtn = findViewById(R.id.groupPageBtn);
 
         groupPageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadView(2);
+                loadView(1);
             }
         });
-
-        toolbar = findViewById(R.id.main_toolbar);
-        toolbar.setTitle("Home Feed");
-        setSupportActionBar(toolbar);
     }
 
     @Override
