@@ -1,13 +1,17 @@
 package com.uima.cogs;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -16,10 +20,12 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
     private FirebaseUser currentUser;
-    private Button settingBtn;
     private Button groupPageBtn;
     private Fragment groupFrag;
     private Fragment homeFeedFrag;
+
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,21 +36,12 @@ public class MainActivity extends AppCompatActivity {
 
         groupFrag = new GroupListFragment();
         homeFeedFrag = new HomeFeedFragment();
-        if(currentUser==null){
+       if(currentUser==null){
 
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
         }
-
-        settingBtn = findViewById(R.id.settingsBtn);
-        settingBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-                startActivity(intent);
-            }
-        });
 
         groupPageBtn = findViewById(R.id.groupPageBtn);
         getSupportFragmentManager().beginTransaction()
@@ -61,14 +58,31 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button searchBtn = findViewById(R.id.searchBtn);
-        searchBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SearchGroupActivity.class);
-                startActivity(intent);
-            }
-        });
-
+        toolbar = findViewById(R.id.main_toolbar);
+        toolbar.setTitle("Home Feed");
+        setSupportActionBar(toolbar);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == R.id.settingsIcon) {
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(intent);
+            return true;
+        } else if (id == R.id.searchIcon) {
+            Intent intent = new Intent(MainActivity.this, SearchGroupActivity.class);
+            startActivity(intent);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 }
