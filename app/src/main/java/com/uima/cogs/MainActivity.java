@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 getMenuInflater().inflate(R.menu.main_groups_menu, menu);
                 return true;
             case 2:
-                getMenuInflater().inflate(R.menu.main__group_detail_menu, menu);
+                getMenuInflater().inflate(R.menu.main_liked_menu, menu);
                 return true;
             case 3:
                 getMenuInflater().inflate(R.menu.main__group_detail_menu, menu);
