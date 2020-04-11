@@ -58,9 +58,9 @@ public class MainActivity extends AppCompatActivity {
 
     toolbar = findViewById(R.id.main_toolbar);
     toolbar.setTitle("Home Feed");
-    setSupportActionBar(toolbar);
     tabLayout = findViewById(R.id.tab_layout);
     viewPager = findViewById(R.id.pager);
+    setSupportActionBar(toolbar);
 
     bottomNavigation = findViewById(R.id.bottom_navigation);
 
@@ -72,9 +72,11 @@ public class MainActivity extends AppCompatActivity {
                             loadView(1, "");
                             viewPager.setAdapter(new HomePagerAdapter(getSupportFragmentManager()));
                             tabLayout.setupWithViewPager(viewPager);
+                            tabLayout.setVisibility(View.VISIBLE);
                             return true;
                         case R.id.nav_home:
                             loadView(0, "");
+                            tabLayout.setVisibility(View.GONE);
                             return true;
                         case R.id.nav_liked:
                             loadView(2, "");
