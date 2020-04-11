@@ -57,11 +57,12 @@ public class SearchGroupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String courseId = search.getText().toString();
+                courseId.replace(".","");
                 if(courseId.isEmpty()){
                     Toast.makeText(SearchGroupActivity.this, "Please enter a course name", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    courseId.replace(".", "");
+                    courseId = courseId.replace(".", "");
                     groupDescriptionList.clear();
                     mAdapter.notifyDataSetChanged();
                     getCourseGroups(courseId);
@@ -81,6 +82,12 @@ public class SearchGroupActivity extends AppCompatActivity {
 
     public void getCourseGroups(final String courseId){
         //courseId.replace(".", "");
+        String str = "";
+        for(int i = 0; i<courseId.length(); i++){
+            if(courseId.charAt(i)!='.'){
+
+            }
+        }
         courseRef = FirebaseDatabase.getInstance().getReference().child("Courses");
         courseRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
