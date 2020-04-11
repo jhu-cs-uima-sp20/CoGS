@@ -61,20 +61,20 @@ public class MainActivity extends AppCompatActivity {
                 @Override public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     switch (item.getItemId()) {
                         case R.id.nav_group:
-                            loadView(1);
+                            loadView(1, "");
                             return true;
                         case R.id.nav_home:
-                            loadView(0);
+                            loadView(0, "");
                             return true;
                         case R.id.nav_liked:
-                            loadView(2);
+                            loadView(2, "");
                             return true;
                     }
                     return false;
                 }
             });
 
-        loadView(0);
+        loadView(0, "");
 
     }
 
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 getMenuInflater().inflate(R.menu.main_groups_menu, menu);
                 return true;
             case 2:
-                getMenuInflater().inflate(R.menu.main__group_detail_menu, menu);
+                getMenuInflater().inflate(R.menu.main_liked_menu, menu);
                 return true;
             case 3:
                 getMenuInflater().inflate(R.menu.main__group_detail_menu, menu);
@@ -121,23 +121,28 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void loadView(int frag) {
+    //GroupName used when loading detailed Group View
+    private void loadView(int frag, String groupName) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         switch(frag) {
-            case 0:
+            case 0: //Home
                 transaction.replace(R.id.fragment_container, homeFeedFrag).commit();
                 toolbar.setTitle("Home Feed");
                 curView = 0;
                 break;
-            case 1:
+            case 1: //Groups
                 transaction.replace(R.id.fragment_container, groupFrag).commit();
                 toolbar.setTitle("Groups");
                 curView = 1;
                 break;
-            case 2: //Implement later
+            case 2: //Implement later Liked Notes
                 //transaction.replace(R.id.fragment_container, groupFrag).commit();
                 toolbar.setTitle("Liked");
                 curView = 2;
+                break;
+            case 3: //Detailed Group View
+                toolbar.setTitle(groupName);
+                curView = 3;
                 break;
             default:;
         }

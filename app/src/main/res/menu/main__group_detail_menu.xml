@@ -7,8 +7,8 @@
         android:title="search"
         app:showAsAction="always" />
     <item
-        android:id="@+id/settingsIcon"
+        android:id="@+id/settingsGroupIcon"
         android:icon="@drawable/ic_settings_black_24dp"
-        android:title="settings"
+        android:title="Group Settings"
         app:showAsAction="always" />
 </menu>

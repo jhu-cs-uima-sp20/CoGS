@@ -47,7 +47,8 @@
             android:id="@+id/imageButtonEdit"
             android:layout_width="74dp"
             android:layout_height="66dp"
-            android:src="@drawable/ic_add_24px" />
+            android:src="@drawable/ic_add_24px"
+            tools:ignore="VectorDrawableCompat" />
 
         <TextView
             android:id="@+id/textView"

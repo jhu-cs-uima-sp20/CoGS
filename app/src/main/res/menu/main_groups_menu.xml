@@ -9,6 +9,6 @@
     <item
         android:id="@+id/groupFilterIcon"
         android:icon="@drawable/ic_filter_list_black_24dp"
-        android:title="settings"
+        android:title="filter"
         app:showAsAction="always" />
 </menu>

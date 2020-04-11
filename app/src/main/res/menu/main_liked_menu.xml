@@ -7,8 +7,8 @@
         android:title="search"
         app:showAsAction="always" />
     <item
-        android:id="@+id/settingsIcon"
-        android:icon="@drawable/ic_settings_black_24dp"
-        android:title="settings"
+        android:id="@+id/likedFilterIcon"
+        android:icon="@drawable/ic_filter_list_black_24dp"
+        android:title="likedFilter"
         app:showAsAction="always" />
 </menu>

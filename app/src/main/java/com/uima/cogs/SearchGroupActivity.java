@@ -2,6 +2,7 @@ package com.uima.cogs;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,6 +34,8 @@ public class SearchGroupActivity extends AppCompatActivity {
     private ImageView searchIcon;
     private ArrayList<GroupDescription> groupDescriptionList;
     DatabaseReference courseRef;
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +47,8 @@ public class SearchGroupActivity extends AppCompatActivity {
         rv = findViewById(R.id.recycler_view);
         layoutManager = new LinearLayoutManager(this);
         rv.setLayoutManager(layoutManager);
+
+        toolbar = findViewById(R.id.searchToolbar);
 
         mAdapter = new GroupAdapter(groupDescriptionList);
         rv.setAdapter(mAdapter);
@@ -61,6 +66,14 @@ public class SearchGroupActivity extends AppCompatActivity {
                     mAdapter.notifyDataSetChanged();
                     getCourseGroups(courseId);
                 }
+            }
+        });
+
+        toolbar.setTitle("Search");
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 
