@@ -11,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
+
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private Button groupPageBtn;
     private Fragment groupFrag;
     private Fragment homeFeedFrag;
-
+    private FrameLayout fragment_container;
     private Toolbar toolbar;
 
     @Override
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         currentUser = auth.getCurrentUser();
-
+        fragment_container =findViewById(R.id.fragment_container);
         groupFrag = new GroupListFragment();
         homeFeedFrag = new HomeFeedFragment();
        if(currentUser==null){
@@ -43,18 +45,13 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
 
+       loadView(0);
         groupPageBtn = findViewById(R.id.groupPageBtn);
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment_container, homeFeedFrag).commit();
 
         groupPageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, groupFrag);
-                transaction.addToBackStack(null);
-                transaction.commit();
-
+                loadView(2);
             }
         });
 
@@ -83,6 +80,26 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void loadView(int frag) {
+        fragment_container.removeAllViews();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        switch(frag) {
+            case 0:
+                transaction.replace(R.id.fragment_container, homeFeedFrag).commit();
+                toolbar.setTitle("Home Feed");
+                break;
+            case 1:
+                transaction.replace(R.id.fragment_container, groupFrag).commit();
+                toolbar.setTitle("Groups");
+                break;
+            case 2:
+                //transaction.replace(R.id.fragment_container, groupFrag).commit();
+                toolbar.setTitle("Liked");
+                break;
+            default:;
+        }
     }
 
 }
