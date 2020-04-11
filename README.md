@@ -22,8 +22,7 @@ While on the main activity if you click the back button the app takes users to t
  
 Settings Page: The functionality for this page has been complete. Users are able to save their names, courses, and profile picture. This data is saved into the database so once the user saves it they can view the changes once they return to the settings page. 
 Errors: 
-The back does not work yet
-Create Group Page: Implementation for this page has been completed. Users can now create a group, and this information is stored in the database.  
+Create Group Page: Implementation for this page has been completed. Users can now create a group, and this information is stored in the database and can be looked up under the search page by the course it is linked to.   
 
 Search Page: Implementation not fully complete. Users can search for a group but only by course name and not group name. If users enter a course id, all the groups associated with that course will be displayed to the user. A few testing Course ID: AS.123.123, AS.400.400  
 Errors: 
