@@ -44,6 +44,7 @@ public class SettingsActivity extends AppCompatActivity {
     private Uri filePath;
     private String imageUrl;
     private FirebaseStorage myStorage;
+    private Toolbar toolbar;
 
 
     @Override
@@ -58,15 +59,7 @@ public class SettingsActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         myStorage = FirebaseStorage.getInstance();
         imageUrl = "tempUrl";
-
-
-        androidx.appcompat.widget.Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_settings);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Settings");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-
-
+        toolbar = findViewById(R.id.settingsToolbar);
 
         reff = FirebaseDatabase.getInstance().getReference("Users").child(auth.getUid());
         getSettings();
@@ -96,7 +89,13 @@ public class SettingsActivity extends AppCompatActivity {
                 chooseImage();
             }
         });
-
+        toolbar.setTitle("Settings");
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 
