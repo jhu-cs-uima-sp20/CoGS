@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 
@@ -54,37 +55,32 @@ public class MainActivity extends AppCompatActivity {
        toolbar.setTitle("Home Feed");
     setSupportActionBar(toolbar);
 
-        bottomNavigation = findViewById(R.id.bottom_navigation);
+    bottomNavigation = findViewById(R.id.bottom_navigation);
 
-    groupPageBtn = findViewById(R.id.groupPageBtn);
-
-    groupPageBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadView(1); }
-    });
-    loadView(0);
-
-        BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener =
-                new BottomNavigationView.OnNavigationItemSelectedListener() {
-                    @Override public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        switch (item.getItemId()) {
-                            case R.id.nav_group:
-                                loadView(1);
-                                return true;
-                            case R.id.nav_home:
-                                loadView(0);
-                                return true;
-                            case R.id.nav_liked:
-                                loadView(2);
-                                return true;
-                        }
-                        return false;
+    bottomNavigation.setOnNavigationItemSelectedListener(
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.nav_group:
+                            loadView(1);
+                            Toast.makeText(getApplicationContext(), "TEST", Toast.LENGTH_LONG).show();
+                            return true;
+                        case R.id.nav_home:
+                            loadView(0);
+                            return true;
+                        case R.id.nav_liked:
+                            loadView(2);
+                            return true;
                     }
-                };
+                    return false;
+                }
+            });
 
+        loadView(0);
 
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -109,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadView(int frag) {
-        fragment_container.removeAllViews();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         switch(frag) {
             case 0:
