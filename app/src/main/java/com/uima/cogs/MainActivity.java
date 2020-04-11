@@ -3,6 +3,8 @@ package com.uima.cogs;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
@@ -15,9 +17,11 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationMenu;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -32,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private BottomNavigationView bottomNavigation;
     private int curView = 0;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
     toolbar = findViewById(R.id.main_toolbar);
     toolbar.setTitle("Home Feed");
     setSupportActionBar(toolbar);
+    tabLayout = findViewById(R.id.tab_layout);
+    viewPager = findViewById(R.id.pager);
 
     bottomNavigation = findViewById(R.id.bottom_navigation);
 
@@ -62,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
                     switch (item.getItemId()) {
                         case R.id.nav_group:
                             loadView(1, "");
+                            viewPager.setAdapter(new HomePagerAdapter(getSupportFragmentManager()));
+                            tabLayout.setupWithViewPager(viewPager);
                             return true;
                         case R.id.nav_home:
                             loadView(0, "");
@@ -148,5 +158,29 @@ public class MainActivity extends AppCompatActivity {
         }
         invalidateOptionsMenu();
     }
+    public class HomePagerAdapter extends FragmentPagerAdapter {
+        public HomePagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
 
+        @Override
+        public Fragment getItem(int position) {
+            return new HomeFeedFragment();
+        }
+
+        @Override
+        public int getCount() {
+            return 2;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                default:
+                    return "Notes";
+                case 1:
+                    return "Meetings";
+            }
+        }
+    }
 }
