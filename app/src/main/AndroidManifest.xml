@@ -9,15 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SearchGroupActivity"></activity>
+        <activity android:name=".JoinGroupActivity"></activity>
+        <activity android:name=".SearchGroupActivity" />
         <activity android:name=".CreateGroupActivity" />
         <activity
             android:name=".SettingsActivity"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"
-                />
+                android:value=".MainActivity" />
         </activity>
         <activity android:name=".SignUpActivity" />
         <activity android:name=".LoginActivity" />

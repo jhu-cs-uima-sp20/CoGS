@@ -6,6 +6,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -50,7 +52,7 @@ public class SearchGroupActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.searchToolbar);
 
-        mAdapter = new GroupAdapter(groupDescriptionList);
+        mAdapter = new GroupAdapter(groupDescriptionList, getApplicationContext(), this);
         rv.setAdapter(mAdapter);
 
         searchIcon.setOnClickListener(new View.OnClickListener() {
@@ -157,8 +159,8 @@ public class SearchGroupActivity extends AppCompatActivity {
 class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.MyViewHolder> {
 
     private List<GroupDescription> groupList;
-    //private Context context;
-    //private Activity activity1;
+    private Context context;
+    private Activity activity1;
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public TextView name, deadline, assignee;
@@ -171,22 +173,24 @@ class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.MyViewHolder> {
         }
         @Override
         public void onClick(View view) {
-            /*
-            Intent intent = new Intent(activity1, view_tasks.class);
-            intent.putExtra("Task Name", taskList.get(getAdapterPosition()).getTask());
-            intent.putExtra("Assignee Name", taskList.get(getAdapterPosition()).getAssigned());
-            intent.putExtra("Deadline", taskList.get(getAdapterPosition()).getDate());
-            intent.putExtra("Position", getAdapterPosition());
+
+            Intent intent = new Intent(activity1, JoinGroupActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("Group Name", groupList.get(getAdapterPosition()).getGroupName());
+            intent.putExtra("Description", groupList.get(getAdapterPosition()).getShortDescription());
+            intent.putExtra("Class", groupList.get(getAdapterPosition()).getCourseName());
+            intent.putStringArrayListExtra("Members", groupList.get(getAdapterPosition()).getMembers());
             context.startActivity(intent);
-            */
 
         }
 
 
     }
 
-    public GroupAdapter(List<GroupDescription> groupList) {
+    public GroupAdapter(List<GroupDescription> groupList, Context context, Activity activity1 ) {
         this.groupList = groupList;
+        this.context = context;
+        this.activity1 = activity1;
     }
 
     @Override
