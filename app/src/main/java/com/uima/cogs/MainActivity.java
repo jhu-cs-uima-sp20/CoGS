@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                     switch (item.getItemId()) {
                         case R.id.nav_group:
                             loadView(1, "");
-                            viewPager.setAdapter(new HomePagerAdapter(getSupportFragmentManager()));
+                            //viewPager.setAdapter(new HomePagerAdapter(getSupportFragmentManager()));
                             tabLayout.setupWithViewPager(viewPager);
                             tabLayout.setVisibility(View.VISIBLE);
                             return true;

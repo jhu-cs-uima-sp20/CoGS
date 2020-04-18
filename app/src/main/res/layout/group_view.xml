@@ -3,26 +3,78 @@
 <androidx.cardview.widget.CardView
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="150dp"
     card_view:cardCornerRadius="4dp"
     android:layout_margin="5dp">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_gravity="center"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/groupNameCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#000"
-            android:text="contact det"
+            android:layout_marginTop="16dp"
             android:gravity="center_vertical"
-            android:textSize="30dp"/>
+            android:text="contact det"
+            android:textColor="#000"
+            android:textSize="30dp"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent" />
 
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/numMembers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="44dp"
+            android:text="0"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/groupNameCard" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="44dp"
+            android:layout_marginEnd="124dp"
+            android:text="Members"
+            card_view:layout_constraintEnd_toStartOf="@+id/numMeetings"
+            card_view:layout_constraintHorizontal_bias="0.608"
+            card_view:layout_constraintStart_toEndOf="@+id/numMembers"
+            card_view:layout_constraintTop_toBottomOf="@+id/groupNameCard" />
+
+        <TextView
+            android:id="@+id/numMeetings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:layout_marginEnd="16dp"
+            android:text="0"
+            card_view:layout_constraintEnd_toStartOf="@+id/textView13"
+            card_view:layout_constraintTop_toBottomOf="@+id/groupNameCard" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:layout_marginEnd="40dp"
+            android:text="Meetings"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/groupNameCard" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 </androidx.cardview.widget.CardView>
