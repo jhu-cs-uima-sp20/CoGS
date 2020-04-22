@@ -40,7 +40,7 @@
             card_view:layout_constraintTop_toBottomOf="@+id/groupNameCard" />
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/cardMeetingDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="7dp"
@@ -59,11 +59,11 @@
             android:layout_marginTop="44dp"
             android:layout_marginEnd="16dp"
             android:text="0"
-            card_view:layout_constraintEnd_toStartOf="@+id/textView13"
+            card_view:layout_constraintEnd_toStartOf="@+id/cardMeetingRSVP"
             card_view:layout_constraintTop_toBottomOf="@+id/groupNameCard" />
 
         <TextView
-            android:id="@+id/textView13"
+            android:id="@+id/cardMeetingRSVP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="44dp"

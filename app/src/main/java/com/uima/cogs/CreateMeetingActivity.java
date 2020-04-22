@@ -43,7 +43,6 @@ public class CreateMeetingActivity extends AppCompatActivity {
         date = findViewById(R.id.datePicker2);
         time = findViewById(R.id.timePicker);
         createMeetingBtn = findViewById(R.id.createMeetingBtn);
-        //mPrefs = getContext().getSharedPreferences("TaskObjects1", Activity.MODE_PRIVATE);
 
         auth = FirebaseAuth.getInstance();
 
@@ -79,7 +78,6 @@ public class CreateMeetingActivity extends AppCompatActivity {
                     newMeeting.setMonth(date.getMonth());
                     newMeeting.setHour(time.getHour());
                     newMeeting.setMinute(time.getMinute());
-
                     Intent intent = getIntent();
 
                     String groupName  = intent.getStringExtra("Group Name");
