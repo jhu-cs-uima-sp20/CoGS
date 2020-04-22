@@ -3,6 +3,7 @@ package com.uima.cogs;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -35,6 +36,7 @@ public class GroupListFragment extends Fragment {
     private RecyclerView rv;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter mAdapter;
+    private SharedPreferences mPrefs;
     public GroupListFragment() {
         // Required empty public constructor
     }
@@ -98,10 +100,7 @@ public class GroupListFragment extends Fragment {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     GroupDescription group = dataSnapshot.getValue(GroupDescription.class);
                     groupDescriptions.add(0, group);
-                    //System.out.println("User!!!!!!!!!!!!!!: "+ group.getGroupName());
                     mAdapter.notifyItemInserted(0);
-                    //customAdapter.notifyDataSetChanged();
-                    //gridView.setAdapter(customAdapter);
                 }
 
                 @Override
@@ -113,17 +112,6 @@ public class GroupListFragment extends Fragment {
 
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        super.onActivityResult(requestCode, resultCode, data);
-        // check if the request code is same as what is passed  here it is 2
-        if(requestCode==2)
-        {
-            //groupDescriptions.clear();
-            //mAdapter.notifyDataSetChanged();
-        }
-    }
 
 }
 
@@ -146,14 +134,10 @@ class GroupAdapterList extends RecyclerView.Adapter<GroupAdapterList.MyViewHolde
         @Override
         public void onClick(View view) {
 
-            /*
-            Intent intent = new Intent(activity1, JoinGroupActivity.class);
+            Intent intent = new Intent(activity1, GroupActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra("Group Name", groupList.get(getAdapterPosition()).getGroupName());
-            intent.putExtra("Description", groupList.get(getAdapterPosition()).getShortDescription());
-            intent.putExtra("Class", groupList.get(getAdapterPosition()).getCourseName());
-            intent.putStringArrayListExtra("Members", groupList.get(getAdapterPosition()).getMembers());
-            context.startActivity(intent);*/
+            context.startActivity(intent);
 
         }
 

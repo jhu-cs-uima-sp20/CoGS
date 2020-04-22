@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".JoinGroupActivity"></activity>
+        <activity android:name=".CreateMeetingActivity"></activity>
+        <activity android:name=".GroupActivity" />
+        <activity android:name=".JoinGroupActivity" />
         <activity android:name=".SearchGroupActivity" />
         <activity android:name=".CreateGroupActivity" />
         <activity
