@@ -55,7 +55,7 @@ public class CreateGroupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 storeNewGroup();
-                finish();
+                //finish();
             }
         });
 
@@ -124,6 +124,7 @@ public class CreateGroupActivity extends AppCompatActivity {
         ArrayList<String> groupList = new ArrayList<>();
         groupList.add(groupName);
         courseRef.setValue(groupList);
+        addGroupToUser(groupName);
     }
 
     public void updateCourse(final String courseName, final String groupName){
@@ -138,7 +139,8 @@ public class CreateGroupActivity extends AppCompatActivity {
                 GenericTypeIndicator<ArrayList<String>> t = new GenericTypeIndicator<ArrayList<String>>() {};
                 groupList =  dataSnapshot.getValue(t);
                 groupList.add(groupName);
-                addGroupList(groupList, courseName);
+                addGroupList(groupList, courseName);//Add group list under the specific course section
+                addGroupToUser(groupName);
             }
 
             @Override
@@ -149,8 +151,56 @@ public class CreateGroupActivity extends AppCompatActivity {
 
     }
 
+    //Adds a the new group to the specific course under the course section
     void addGroupList(ArrayList<String> groupList, String courseName){
         fireData.child("Courses").child(courseName).setValue(groupList);
+    }
+    //Adds a group under the user group section
+    public void addGroupToUser(final String groupNameStr){
+        final DatabaseReference memberRef = FirebaseDatabase.getInstance().getReference().child("Users").child(auth.getUid());
+
+        memberRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(!dataSnapshot.hasChild("groups")){
+                    ArrayList<String> userGroupList = new ArrayList<>();
+                    userGroupList.add(groupNameStr);
+                    addGroupToUser2(userGroupList);
+
+                }
+                else{
+                    ArrayList<String> userGroupList = new ArrayList<>();
+                    GenericTypeIndicator<ArrayList<String>> t = new GenericTypeIndicator<ArrayList<String>>() {};
+                    userGroupList = dataSnapshot.child("groups").getValue(t);
+                    userGroupList.add(groupNameStr);
+                    addGroupToUser2(userGroupList);
+
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }
+
+    public void addGroupToUser2(ArrayList<String> list){
+        final DatabaseReference userGroupRef = FirebaseDatabase.getInstance().getReference().child("Users").child(auth.getUid()).child("groups");
+        userGroupRef.setValue(list).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                //Toast.makeText(getApplicationContext(), "Successfully Created Group", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent();
+                setResult(2, intent);
+                finish();
+            }
+        });
+
     }
 
 }

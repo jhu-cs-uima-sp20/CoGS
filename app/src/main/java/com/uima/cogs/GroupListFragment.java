@@ -60,7 +60,7 @@ public class GroupListFragment extends Fragment {
 
 
         DatabaseReference groupRef = FirebaseDatabase.getInstance().getReference().child("Users").child(auth.getUid());
-        groupRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        groupRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.hasChild("groups")){
@@ -80,7 +80,7 @@ public class GroupListFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), CreateGroupActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
             }
         });
         return root;
@@ -89,6 +89,8 @@ public class GroupListFragment extends Fragment {
     public void getGroups(ArrayList<String>  groupList){
 
         for(int i = 0; i< groupList.size(); i++){
+            groupDescriptions.clear();
+            mAdapter.notifyDataSetChanged();
 
             DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference().child("Groups").child(groupList.get(i)).child("Group Description");
             dataRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -96,7 +98,7 @@ public class GroupListFragment extends Fragment {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     GroupDescription group = dataSnapshot.getValue(GroupDescription.class);
                     groupDescriptions.add(0, group);
-                    System.out.println("User!!!!!!!!!!!!!!: "+ group.getGroupName());
+                    //System.out.println("User!!!!!!!!!!!!!!: "+ group.getGroupName());
                     mAdapter.notifyItemInserted(0);
                     //customAdapter.notifyDataSetChanged();
                     //gridView.setAdapter(customAdapter);
@@ -109,6 +111,18 @@ public class GroupListFragment extends Fragment {
             });
         }
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        // check if the request code is same as what is passed  here it is 2
+        if(requestCode==2)
+        {
+            //groupDescriptions.clear();
+            //mAdapter.notifyDataSetChanged();
+        }
     }
 
 }
