@@ -13,6 +13,7 @@ public class Meetings {
     private int month;
     private int hour;
     private int minute;
+    private String meetingId;
 
     public ArrayList<String> getAttendess() {
         return attendess;
@@ -84,5 +85,13 @@ public class Meetings {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    public void setMeetingId(String meetingId) {
+        this.meetingId = meetingId;
+    }
+
+    public String getMeetingId() {
+        return meetingId;
     }
 }

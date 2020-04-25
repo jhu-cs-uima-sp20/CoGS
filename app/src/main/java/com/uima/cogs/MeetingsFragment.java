@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -35,6 +36,7 @@ public class MeetingsFragment extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
+
     public MeetingsFragment() {
         // Required empty public constructor
     }
@@ -52,16 +54,15 @@ public class MeetingsFragment extends Fragment {
 
         FloatingActionButton fab = root.findViewById(R.id.floatingActionButtonMeeting);
         rv = root.findViewById(R.id.meetingRV);
+        Intent intent1 = getActivity().getIntent();
+        gName = intent1.getStringExtra("Group Name");
 
         meetingsArrayList = new ArrayList<>();
-        mAdapter = new MeetingAdapterList(meetingsArrayList, getContext(), getActivity());
+        mAdapter = new MeetingAdapterList(meetingsArrayList, getContext(), getActivity(), gName);
         layoutManager = new LinearLayoutManager(getContext());
         rv.setLayoutManager(layoutManager);
         rv.setAdapter(mAdapter);
 
-
-        Intent intent1 = getActivity().getIntent();
-        gName = intent1.getStringExtra("Group Name");
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,10 +77,14 @@ public class MeetingsFragment extends Fragment {
         meetingRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                meetingsArrayList.clear();
+                mAdapter.notifyDataSetChanged();
+
                 if(dataSnapshot.hasChildren()) {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-
+                        String meetingId = snapshot.getKey();
                         Meetings meeting = snapshot.getValue(Meetings.class);
+                        meeting.setMeetingId(meetingId);
                         System.out.println("Meeing Name!!!!!!!!!!!!!!1: "+ meeting.getName());
                         meetingsArrayList.add(0, meeting);
                         mAdapter.notifyItemInserted(0);
@@ -102,6 +107,7 @@ class MeetingAdapterList extends RecyclerView.Adapter<MeetingAdapterList.MyViewH
     private List<Meetings> meetingList;
     private Context context;
     private Activity activity1;
+    private String gName;
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public TextView name, date, shortDes, rsvp;
@@ -124,19 +130,23 @@ class MeetingAdapterList extends RecyclerView.Adapter<MeetingAdapterList.MyViewH
             Meetings meeting = meetingList.get(getAdapterPosition());
             intent.putExtra("Meeting Name", meeting.getName());
             intent.putExtra("Meeting Location", meeting.getLocation() );
+            intent.putExtra("Meeting Description", meeting.getDecription());
+            intent.putExtra("Meeting Id", meeting.getMeetingId());
+            intent.putExtra("Group Name", gName);
+            intent.putStringArrayListExtra("List", meeting.getAttendess());
             String date = meeting.getMonth()+"/"+meeting.getDay()+"/"+meeting.getYear();
-            String time = meeting.getHour()+":" + meeting.getMinute();
-            intent.putExtra("Meeting Date", date);
+            String time = date+" at "+ meeting.getHour()+":" + meeting.getMinute();
+            intent.putExtra("Meeting Time", time);
             context.startActivity(intent);
         }
 
-
     }
 
-    public MeetingAdapterList(List<Meetings> meetingList, Context context, Activity activity1 ) {
+    public MeetingAdapterList(List<Meetings> meetingList, Context context, Activity activity1, String gName ) {
         this.meetingList = meetingList;
         this.context = context;
         this.activity1 = activity1;
+        this.gName = gName;
     }
 
     @Override
