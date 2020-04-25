@@ -12,16 +12,21 @@ import android.widget.Button;
 public class GroupSettingsActivity extends AppCompatActivity {
 
     private Fragment groupMemberFrag;
+    private Fragment settingFrag;
     private Button membersBtn;
     private Button groupSettingBtn;
     private FragmentTransaction transaction;
     private String groupName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_settings);
         membersBtn = findViewById(R.id.groupMemberBtn);
+        groupSettingBtn = findViewById(R.id.groupSettingsBtn);
+
         groupMemberFrag = new GroupMemeberFragment();
+        settingFrag = new GroupSettingsFragment();
 
         transaction = getSupportFragmentManager().beginTransaction();
 
@@ -31,6 +36,15 @@ public class GroupSettingsActivity extends AppCompatActivity {
                 transaction.replace(R.id.settings_fragment_container, groupMemberFrag).commit();
             }
         });
+
+        groupSettingBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                transaction.replace(R.id.settings_fragment_container, settingFrag).commit();
+            }
+        });
+
+
 
     }
 }
