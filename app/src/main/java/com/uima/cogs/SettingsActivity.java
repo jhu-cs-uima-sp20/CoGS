@@ -165,13 +165,27 @@ public class SettingsActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()){
-                        String userName = dataSnapshot.child("name").getValue().toString();
-                        String userCourses = dataSnapshot.child("courses").getValue().toString();
+                        String userName;
+                        try {
+                            userName = dataSnapshot.child("name").getValue().toString();
+                        } catch (Exception e) {
+                            userName = "Error";
+                        }
+                        String userCourses;
+                        try {
+                            userCourses = dataSnapshot.child("courses").getValue().toString();
+                        } catch (Exception e) {
+                            userCourses = "Error";
+                        }
                         name.setText(userName);
                         courses.setText(userCourses);
-                        String imageLink = dataSnapshot.child("imageUrl").getValue().toString();
-                        imageUrl = imageLink;
-                        Picasso.get().load(imageLink).into(image);
+                        try {
+                            String imageLink = dataSnapshot.child("imageUrl").getValue().toString();
+                            imageUrl = imageLink;
+                            Picasso.get().load(imageLink).into(image);
+                        } catch (Exception e) {
+                            //Error
+                        }
                     }
                 }
                 @Override
