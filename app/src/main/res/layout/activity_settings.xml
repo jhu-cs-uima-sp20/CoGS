@@ -27,70 +27,89 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/settingsToolbar">
 
-        <com.blogspot.atifsoftwares.circularimageview.CircularImageView
-            android:id="@+id/userImage"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_centerHorizontal="true"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center|bottom"
+            android:orientation="horizontal">
+
+            <com.blogspot.atifsoftwares.circularimageview.CircularImageView
+                android:id="@+id/userImage"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="15dp"
+                android:src="@drawable/ic_launcher_background"
+                app:c_background_color="@color/colorPrimary"
+                app:c_border="true"
+                app:c_border_color="#4A97E4"
+                app:c_border_width="5.5dp"
+                app:c_shadow="true"
+                app:c_shadow_color="#000"
+                app:c_shadow_gravity="end"
+                app:c_shadow_radius="5.5" />
+
+            <ImageButton
+                android:id="@+id/imageButtonEdit"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="-50dp"
+                android:background="#00FFFFFF"
+                android:src="@drawable/ic_add_24px"
+                tools:ignore="VectorDrawableCompat" />
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
             android:layout_marginTop="25dp"
-            android:src="@drawable/ic_launcher_background"
-            app:c_background_color="@color/colorPrimary"
-            app:c_border="true"
-            app:c_border_color="#4A97E4"
-            app:c_border_width="5.5dp"
-            app:c_shadow="true"
-            app:c_shadow_color="#000"
-            app:c_shadow_gravity="end"
-            app:c_shadow_radius="5.5" />
+            android:layout_marginEnd="25dp"
+            app:boxBackgroundMode="none">
 
-        <ImageButton
-            android:id="@+id/imageButtonEdit"
-            android:layout_width="74dp"
-            android:layout_height="66dp"
-            android:src="@drawable/ic_add_24px"
-            tools:ignore="VectorDrawableCompat" />
+            <EditText
+                android:id="@+id/userName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="50dp"
+                android:ems="10"
+                android:hint="User Name"
+                android:inputType="textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="TextView" />
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="25dp"
+            app:boxBackgroundMode="none">
 
-        <EditText
-            android:id="@+id/userName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="User Name " />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Classes separated by coma" />
-
-        <EditText
-            android:id="@+id/userClasses"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName" />
+            <EditText
+                android:id="@+id/userClasses"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:hint="Classes: separated by comma"
+                android:inputType="textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/saveBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:text="Save" />
 
         <Button
             android:id="@+id/logOutButton"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/LogoutButtonText" />
+            android:layout_marginTop="25dp"
+            android:text="@string/LogoutButtonText"
+            app:backgroundTint="@android:color/holo_red_light" />
 
     </LinearLayout>
 
