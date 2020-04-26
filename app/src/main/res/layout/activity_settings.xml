@@ -32,7 +32,7 @@
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="25dp"
             android:src="@drawable/ic_launcher_background"
             app:c_background_color="@color/colorPrimary"
             app:c_border="true"
@@ -77,7 +77,6 @@
             android:id="@+id/userClasses"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
             android:ems="10"
             android:inputType="textPersonName" />
 
@@ -85,8 +84,13 @@
             android:id="@+id/saveBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="104dp"
             android:text="Save" />
+
+        <Button
+            android:id="@+id/logOutButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/LogoutButtonText" />
 
     </LinearLayout>
 

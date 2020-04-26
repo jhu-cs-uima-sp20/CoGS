@@ -38,6 +38,7 @@ public class SettingsActivity extends AppCompatActivity {
     private TextView courses;
     private CircularImageView image;
     private Button saveBtn;
+    private Button logoutBtn;
     private FirebaseAuth auth;
     private DatabaseReference reff;
     private ImageButton imageEditBtn;
@@ -60,6 +61,7 @@ public class SettingsActivity extends AppCompatActivity {
         myStorage = FirebaseStorage.getInstance();
         imageUrl = "tempUrl";
         toolbar = findViewById(R.id.settingsToolbar);
+        logoutBtn = findViewById(R.id.logOutButton);
 
         reff = FirebaseDatabase.getInstance().getReference("Users").child(auth.getUid());
         getSettings();
@@ -94,6 +96,14 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(SettingsActivity.this, LoginActivity.class);
+                startActivity(intent);
             }
         });
 
