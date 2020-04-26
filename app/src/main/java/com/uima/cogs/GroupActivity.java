@@ -33,7 +33,15 @@ public class GroupActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tabLayout);
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        //Once notes is implemented change to notes frag
         transaction.replace(R.id.group_fragment_container, meetingsFrag).commit();
+
+        //Delete below after notes is implemented
+        TabLayout.Tab tab = tabLayout.getTabAt(1);
+        assert tab != null;
+        tab.select();
+        //End Delete
 
         Intent intent = getIntent();
         groupName = intent.getStringExtra("Group Name");
