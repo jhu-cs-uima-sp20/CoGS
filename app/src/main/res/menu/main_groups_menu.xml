@@ -6,9 +6,14 @@
         android:icon="@drawable/ic_search_black_24dp"
         android:title="search"
         app:showAsAction="always" />
-    <item
+   <!-- <item
         android:id="@+id/groupFilterIcon"
         android:icon="@drawable/ic_filter_list_black_24dp"
         android:title="filter"
+        app:showAsAction="always" />-->
+    <item
+        android:id="@+id/settingsIcon"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="settings"
         app:showAsAction="always" />
 </menu>

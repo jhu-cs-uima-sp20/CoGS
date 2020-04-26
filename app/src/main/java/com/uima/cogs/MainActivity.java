@@ -74,10 +74,10 @@ public class MainActivity extends AppCompatActivity {
                             tabLayout.setupWithViewPager(viewPager);
                             tabLayout.setVisibility(View.VISIBLE);
                             return true;
-                        case R.id.nav_home:
+                        /*case R.id.nav_home:
                             loadView(0, "");
                             tabLayout.setVisibility(View.GONE);
-                            return true;
+                            return true;*/
                         case R.id.nav_liked:
                             loadView(2, "");
                             return true;
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-        loadView(0, "");
+        loadView(1, "");
 
     }
 
@@ -124,10 +124,10 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, SearchGroupActivity.class);
             startActivity(intent);
             return true;
-        } else if (id == R.id.groupFilterIcon) {
+        } /*else if (id == R.id.groupFilterIcon) {
             //For filter groups
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }
