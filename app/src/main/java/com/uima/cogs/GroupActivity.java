@@ -19,7 +19,6 @@ public class GroupActivity extends AppCompatActivity {
 
     private Fragment meetingsFrag;
     private Fragment notesFrag;
-    private FragmentTransaction transaction;
     private String groupName;
     private Toolbar toolbar;
     private TabLayout tabLayout;
@@ -29,10 +28,12 @@ public class GroupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group);
         meetingsFrag = new MeetingsFragment();
+        //notesFrag =
         toolbar = findViewById(R.id.group_toolbar);
         tabLayout = findViewById(R.id.tabLayout);
 
-        transaction = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.group_fragment_container, meetingsFrag).commit();
 
         Intent intent = getIntent();
         groupName = intent.getStringExtra("Group Name");
@@ -49,7 +50,8 @@ public class GroupActivity extends AppCompatActivity {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                switch (tab.getPosition()) {
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                switch (tabLayout.getSelectedTabPosition()) {
                     case 0:
                         //transaction.replace(R.id.group_fragment_container, notesFrag).commit();
                     case 1:
