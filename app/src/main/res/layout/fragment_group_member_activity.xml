@@ -5,24 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".GroupMemeberFragment">
 
-    <ScrollView
+    <GridView
+        android:id="@+id/memberGridView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
-
-            <GridView
-                android:id="@+id/memberGridView"
-                android:layout_width="match_parent"
-                android:layout_height="500dp"
-                android:layout_marginTop="56dp"
-                android:horizontalSpacing="40dp"
-                android:numColumns="3" />
-
-        </LinearLayout>
-    </ScrollView>
+        android:layout_height="match_parent"
+        android:layout_margin="25dp"
+        android:horizontalSpacing="10dp"
+        android:numColumns="4" />
 
 </FrameLayout>
