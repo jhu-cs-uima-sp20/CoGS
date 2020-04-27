@@ -169,13 +169,13 @@ public class SettingsActivity extends AppCompatActivity {
                         try {
                             userName = dataSnapshot.child("name").getValue().toString();
                         } catch (Exception e) {
-                            userName = "Error";
+                            return;
                         }
                         String userCourses;
                         try {
                             userCourses = dataSnapshot.child("courses").getValue().toString();
                         } catch (Exception e) {
-                            userCourses = "Error";
+                            return;
                         }
                         name.setText(userName);
                         courses.setText(userCourses);
@@ -185,6 +185,7 @@ public class SettingsActivity extends AppCompatActivity {
                             Picasso.get().load(imageLink).into(image);
                         } catch (Exception e) {
                             //Error
+                            return;
                         }
                     }
                 }
