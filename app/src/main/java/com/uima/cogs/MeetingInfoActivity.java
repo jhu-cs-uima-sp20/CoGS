@@ -2,6 +2,7 @@ package com.uima.cogs;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
 import android.content.Intent;
@@ -41,6 +42,7 @@ public class MeetingInfoActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private String groupName;
     private String meeting_id;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +56,7 @@ public class MeetingInfoActivity extends AppCompatActivity {
         time = findViewById(R.id.meetingDateInfo);
         gridView = findViewById(R.id.meetingGridView);
         switchBtn = findViewById(R.id.switch2);
+        toolbar = findViewById(R.id.meetingInfoToolbar);
 
         name.setText(intent.getStringExtra("Meeting Name"));
         location.setText(intent.getStringExtra("Meeting Location"));
@@ -103,6 +106,15 @@ public class MeetingInfoActivity extends AppCompatActivity {
                 }
             }
         });
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        toolbar.setTitle(intent.getStringExtra("Meeting Name"));
 
     }
 

@@ -6,90 +6,142 @@
     android:layout_height="match_parent"
     tools:context=".MeetingInfoActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/meetingInfoToolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:translationZ="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="?homeAsUpIndicator" />
+
     <ScrollView
-        android:layout_width="409dp"
-        android:layout_height="729dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/meetingInfoToolbar">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
 
             <TextView
                 android:id="@+id/meetingNameInfo"
+                style="@android:style/Widget.EditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="30dp"
-                android:text="TextView" />
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="25dp"
+                android:text="TextView"
+                android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/textView23"
-                android:textSize="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Meeting Name" />
+                android:layout_marginLeft="28dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="25dp"
+                android:text="Meeting Name"
+                android:textAlignment="textStart" />
 
             <TextView
                 android:id="@+id/meetingShortInfo"
-                android:layout_width="match_parent"
-                android:textSize="30dp"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/textView25"
-                android:textSize="20dp"
+                style="@android:style/Widget.EditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Short Description" />
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="25dp"
+                android:text="TextView"
+                android:textSize="24sp" />
 
             <TextView
-                android:textSize="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="28dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="25dp"
+                android:text="Description"
+                android:textAlignment="textStart" />
+
+            <TextView
                 android:id="@+id/meetingDateInfo"
+                style="@android:style/Widget.EditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="25dp"
+                android:text="TextView"
+                android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/textView27"
-                android:textSize="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Date" />
+                android:layout_marginLeft="28dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="25dp"
+                android:text="Date"
+                android:textAlignment="textStart" />
 
             <TextView
-                android:textSize="30dp"
                 android:id="@+id/meetingInfoLocation"
+                style="@android:style/Widget.EditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="25dp"
+                android:text="TextView"
+                android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/textView29"
-                android:textSize="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Location" />
-
+                android:layout_marginLeft="28dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="25dp"
+                android:text="Location"
+                android:textAlignment="textStart" />
 
             <Switch
                 android:id="@+id/switch2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Switch" />
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="25dp"
+                android:text="Going?"
+                android:textAlignment="textStart"
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="25dp"
+                android:text="RSVP'd:"
+                android:textColor="#000000"
+                android:textSize="24sp" />
 
             <GridView
                 android:id="@+id/meetingGridView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="56dp"
-                android:horizontalSpacing="40dp"
-                android:numColumns="3"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginBottom="25dp"
+                android:horizontalSpacing="10dp"
+                android:numColumns="4"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
