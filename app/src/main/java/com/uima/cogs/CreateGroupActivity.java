@@ -76,7 +76,13 @@ public class CreateGroupActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Please Fill in All the Fields", Toast.LENGTH_SHORT).show();
 
         }
+        else if(!validID(courseName)){
+
+            Toast.makeText(getApplicationContext(), "Please Add A Valid Course ID", Toast.LENGTH_SHORT).show();
+
+        }
         else {
+
             GroupDescription newGroup = new GroupDescription();
             newGroup.setShortDescription(shortDescription);
             newGroup.setCourseName(courseName);
@@ -90,6 +96,31 @@ public class CreateGroupActivity extends AppCompatActivity {
                 }
             });
         }
+
+    }
+
+    boolean validID(String courseId){
+        if(courseId.length()!=10){
+            System.out.println("Here 1: "+ courseId.length());
+            return false;
+        }
+        if(!Character.isLetter(courseId.charAt(0)) || !Character.isLetter(courseId.charAt(1))){
+            System.out.println("Here 2");
+            return false;
+        }
+        if(courseId.charAt(2) != '.' || courseId.charAt(6)!= '.'){
+            System.out.println("Here 3");
+            return false;
+        }
+        if(!Character.isDigit(courseId.charAt(3)) || !Character.isDigit(courseId.charAt(4)) || !Character.isDigit(courseId.charAt(5)) ){
+            System.out.println("Here 4");
+            return false;
+        }
+        if(!Character.isDigit(courseId.charAt(7)) || !Character.isDigit(courseId.charAt(8)) || !Character.isDigit(courseId.charAt(9))){
+            System.out.println("Here 5");
+            return false;
+        }
+        return true;
 
     }
 

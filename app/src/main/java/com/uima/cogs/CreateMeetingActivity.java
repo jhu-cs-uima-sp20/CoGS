@@ -56,7 +56,7 @@ public class CreateMeetingActivity extends AppCompatActivity {
                 String name = meetingName.getText().toString();
                 String shortDescriptionStr = shortDescription.getText().toString();
                 int today_year = Calendar.getInstance().get(Calendar.YEAR);
-                int today_month = Calendar.getInstance().get(Calendar.MONTH) + 1;
+                int today_month = Calendar.getInstance().get(Calendar.MONTH);
                 int today_day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
 
                 int year = date.getYear();

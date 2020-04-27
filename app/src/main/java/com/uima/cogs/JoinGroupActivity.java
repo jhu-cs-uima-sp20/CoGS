@@ -105,6 +105,10 @@ public class JoinGroupActivity extends AppCompatActivity {
     public void getUsers(){
         for(int i = 0; i< members.size(); i++){
 
+            if(members.get(i).equals(auth.getUid())){
+                joinBtn.setVisibility(View.INVISIBLE);
+            }
+
             DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference().child("Users").child(members.get(i));
             dataRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override

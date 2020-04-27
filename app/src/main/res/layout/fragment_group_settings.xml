@@ -44,7 +44,7 @@
             android:layout_marginLeft="28dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="25dp"
-            android:text="Location"
+            android:text="Short Description"
             android:textAlignment="textStart" />
 
         <TextView
@@ -55,7 +55,7 @@
             android:layout_marginLeft="25dp"
             android:layout_marginTop="25dp"
             android:layout_marginRight="25dp"
-            android:text="Description" />
+            android:text="Course" />
 
         <TextView
             android:layout_width="match_parent"
@@ -63,7 +63,7 @@
             android:layout_marginLeft="28dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="25dp"
-            android:text="Description"
+            android:text="Course"
             android:textAlignment="textStart" />
 
         <Button
