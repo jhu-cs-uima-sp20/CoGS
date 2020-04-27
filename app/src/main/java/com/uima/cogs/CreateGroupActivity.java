@@ -45,7 +45,7 @@ public class CreateGroupActivity extends AppCompatActivity {
         groupName = findViewById(R.id.groupName);
         createBtn = findViewById(R.id.createGroupBtn);
 
-        toolbar = findViewById(R.id.createMeetingToolbar);
+        toolbar = findViewById(R.id.createGroupToolbar);
 
         auth = FirebaseAuth.getInstance();
         fireData = FirebaseDatabase.getInstance().getReference();
