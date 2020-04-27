@@ -38,14 +38,14 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="15dp"
+                android:layout_marginBottom="25dp"
                 android:src="@drawable/ic_launcher_background"
                 app:c_background_color="@color/colorPrimary"
-                app:c_border="true"
+                app:c_border="false"
                 app:c_border_color="#4A97E4"
                 app:c_border_width="5.5dp"
                 app:c_shadow="true"
-                app:c_shadow_color="#000"
+                app:c_shadow_color="#95000000"
                 app:c_shadow_gravity="end"
                 app:c_shadow_radius="5.5" />
 
