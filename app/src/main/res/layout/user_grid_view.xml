@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="1dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
+
     <com.blogspot.atifsoftwares.circularimageview.CircularImageView
         android:id="@+id/gridViewUserImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="44dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="5dp"
         android:src="@drawable/ic_launcher_background"
-        app:c_background_color="@color/colorPrimary"
-        app:c_border="true"
+        app:c_background_color="#5FA4FF"
+        app:c_border="false"
         app:c_border_color="#4A97E4"
-        app:c_border_width="5.5dp"
         app:c_shadow="true"
-        app:c_shadow_color="#000"
+        app:c_shadow_color="#00000000"
         app:c_shadow_gravity="end"
         app:c_shadow_radius="5.5" />
+
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="User Name"
         android:id="@+id/gridViewUserName"
-        >
-    </TextView>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:text="User Name"
+        android:textAlignment="center"></TextView>
 </LinearLayout>

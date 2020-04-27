@@ -2,6 +2,7 @@ package com.uima.cogs;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
 import android.content.Intent;
@@ -40,6 +41,8 @@ public class JoinGroupActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private ArrayList<String> members;
     private CustomAdapter customAdapter;
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +54,7 @@ public class JoinGroupActivity extends AppCompatActivity {
         gridView = findViewById(R.id.joinGridView);
         joinBtn  = findViewById(R.id.joinGroupBtn);
         auth = FirebaseAuth.getInstance();
+        toolbar = findViewById(R.id.joinToolbar);
 
         Intent intent = getIntent();
 
@@ -85,6 +89,14 @@ public class JoinGroupActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 addUser();
+            }
+        });
+
+        toolbar.setTitle("Join " + intent.getStringExtra("Group Name"));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 
