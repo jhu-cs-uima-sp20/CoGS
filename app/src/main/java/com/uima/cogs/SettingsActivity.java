@@ -40,6 +40,8 @@ public class SettingsActivity extends AppCompatActivity {
     private Button saveBtn;
     private Button logoutBtn;
     private FirebaseAuth auth;
+    private DatabaseReference reffCourse;
+    private DatabaseReference reffName;
     private DatabaseReference reff;
     private ImageButton imageEditBtn;
     private Uri filePath;
@@ -64,6 +66,8 @@ public class SettingsActivity extends AppCompatActivity {
         logoutBtn = findViewById(R.id.logOutButton);
 
         reff = FirebaseDatabase.getInstance().getReference("Users").child(auth.getUid());
+        reffCourse = FirebaseDatabase.getInstance().getReference("Users").child(auth.getUid()).child("courses");
+        reffName = FirebaseDatabase.getInstance().getReference("Users").child(auth.getUid()).child("name");
         getSettings();
         saveBtn.setOnClickListener(new View.OnClickListener() {
              @Override
@@ -75,7 +79,8 @@ public class SettingsActivity extends AppCompatActivity {
                  newUser.setName(nameStr);
                  newUser.setCourses(coursesStr);
                  newUser.setImageUrl(imageUrl);
-                 reff.setValue(newUser);
+                 reffCourse.setValue(coursesStr);
+                 reffName.setValue(nameStr);
                  saveImage();
 
                  Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
@@ -104,6 +109,7 @@ public class SettingsActivity extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(SettingsActivity.this, LoginActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
