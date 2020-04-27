@@ -1,6 +1,7 @@
 package com.uima.cogs;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -31,6 +32,7 @@ public class CreateMeetingActivity extends AppCompatActivity {
     private Intent intent;
     private FirebaseAuth auth;
     private SharedPreferences mPrefs;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class CreateMeetingActivity extends AppCompatActivity {
         date = findViewById(R.id.datePicker2);
         time = findViewById(R.id.timePicker);
         createMeetingBtn = findViewById(R.id.createMeetingBtn);
+        toolbar = findViewById(R.id.createMeetingToolbar);
 
         auth = FirebaseAuth.getInstance();
 
@@ -88,6 +91,12 @@ public class CreateMeetingActivity extends AppCompatActivity {
             }
         });
 
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 
