@@ -22,7 +22,6 @@ import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CreateGroupActivity extends AppCompatActivity {
 
@@ -46,7 +45,7 @@ public class CreateGroupActivity extends AppCompatActivity {
         groupName = findViewById(R.id.groupName);
         createBtn = findViewById(R.id.createGroupBtn);
 
-        toolbar = findViewById(R.id.createGroupToolbar);
+        toolbar = findViewById(R.id.createMeetingToolbar);
 
         auth = FirebaseAuth.getInstance();
         fireData = FirebaseDatabase.getInstance().getReference();
