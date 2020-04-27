@@ -100,11 +100,12 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="45dp"
+                android:layout_marginLeft="25dp"
                 android:layout_marginTop="45dp"
-                android:layout_marginRight="45dp"
+                android:layout_marginRight="25dp"
                 android:text="Members:"
                 android:textAlignment="textStart"
+                android:textColor="#000000"
                 android:textSize="20sp" />
 
             <GridView
@@ -124,6 +125,7 @@
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
                 android:text="Join" />
         </LinearLayout>
     </ScrollView>
