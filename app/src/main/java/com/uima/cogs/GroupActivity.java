@@ -61,7 +61,7 @@ public class GroupActivity extends AppCompatActivity {
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 switch (tabLayout.getSelectedTabPosition()) {
                     case 0:
-                        transaction.replace(R.id.group_fragment_container, notesFrag).commit();
+                        //transaction.replace(R.id.group_fragment_container, notesFrag).commit();
                     case 1:
                         transaction.replace(R.id.group_fragment_container, meetingsFrag).commit();
                 }
