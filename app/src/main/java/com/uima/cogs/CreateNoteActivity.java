@@ -68,12 +68,12 @@ public class CreateNoteActivity extends AppCompatActivity {
         uploadNoteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String noteName = name.getText().toString();
-                Notes newNote = new Notes();
-                newNote.setName(noteName);
+                //String noteName = name.getText().toString();
+                //Notes newNote = new Notes();
+                //newNote.setName(noteName);
                 //uploadNote(groupName);
-                newNote.setImageUrl(imageUrl);
-                saveNote(groupName, newNote);
+               // newNote.setImageUrl(imageUrl);
+                uploadNote(groupName);
             }
         });
 
@@ -126,6 +126,7 @@ public class CreateNoteActivity extends AppCompatActivity {
                     String noteID = noteDatabaseReference.push().getKey();
                     Notes note = new Notes(noteName, taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
                     noteDatabaseReference.child(noteID).setValue(note);
+                    Toast.makeText(CreateNoteActivity.this, "Image uploaded successfeully",Toast.LENGTH_SHORT).show();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -136,6 +137,8 @@ public class CreateNoteActivity extends AppCompatActivity {
 
         }
     }
+
+
 
     /*
     void uploadNote(String groupName){
@@ -184,7 +187,7 @@ public class CreateNoteActivity extends AppCompatActivity {
 
      */
 
-
+/*
     public void saveNote(String groupName, Notes note){
         DatabaseReference noteRef = FirebaseDatabase.getInstance().getReference().child("Groups").child(groupName).child("Group Notes");
         noteRef.push().setValue(note).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -196,6 +199,8 @@ public class CreateNoteActivity extends AppCompatActivity {
         });
 
     }
+
+ */
 
 
 }

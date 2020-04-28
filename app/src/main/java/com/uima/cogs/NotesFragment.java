@@ -37,6 +37,10 @@ public class NotesFragment extends Fragment {
     private String gName;
     private ArrayList<Notes> noteList;
     private CustomAdapter1 customAdapter;
+    private DatabaseReference databaseReference;
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+
 
     public NotesFragment() {
         // Required empty public constructor
@@ -50,17 +54,56 @@ public class NotesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        root = inflater.inflate(R.layout.fragment_meetings, container, false);
+        root = inflater.inflate(R.layout.fragment_notes, container, false);
 
         FloatingActionButton fabN = root.findViewById(R.id.floatingActionButtonNote);
-        gv = root.findViewById(R.id.noteGV);
+        //recyclerView = root.findViewById(R.id.noteRV);
         Intent intent2 = getActivity().getIntent();
         gName = intent2.getStringExtra("Group Name");
+        gv = root.findViewById(R.id.noteGV);
 
-        noteList = new ArrayList<>();
+        //recyclerView.setHasFixedSize(true);
+        //recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        fabN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), CreateNoteActivity.class);
+                intent.putExtra("Group Name", gName);
+                startActivity(intent);
+            }
+        });
+
+        /*
+        databaseReference = FirebaseDatabase.getInstance().getReference("Notes").child(gName);
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+
+                    Notes note = postSnapshot.getValue(Notes.class);
+
+                    noteList.add(note);
+                }
+
+                adapter = new RecyclerViewAdapter(getContext(), noteList);
+
+                recyclerView.setAdapter(adapter);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
+         */
+
+       noteList = new ArrayList<>();
         customAdapter = new CustomAdapter1(noteList, getActivity());
-        gv.setAdapter(customAdapter);
+       gv.setAdapter(customAdapter);
 
         fabN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,9 +131,65 @@ public class NotesFragment extends Fragment {
 
             }
         });
+
         return root;
     }
 }
+/*
+class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+
+    Context context;
+    ArrayList<Notes> notesArrayList;
+
+    public RecyclerViewAdapter(Context context, ArrayList<Notes> TempList) {
+
+        this.notesArrayList = TempList;
+
+        this.context = context;
+    }
+
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.note_view, parent, false);
+
+        ViewHolder viewHolder = new ViewHolder(view);
+
+        return viewHolder;
+    }
+
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        Notes UploadInfo = notesArrayList.get(position);
+
+        holder.imageNameTextView.setText(UploadInfo.getName());
+
+        //Loading image from Glide library.
+        //Glide.with(context).load(UploadInfo.getImageUrl()).into(holder.imageView);
+    }
+
+    @Override
+    public int getItemCount() {
+
+        return notesArrayList.size();
+    }
+
+    class ViewHolder extends RecyclerView.ViewHolder {
+
+        public ImageView imageView;
+        public TextView imageNameTextView;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+
+            imageView = (ImageView) itemView.findViewById(R.id.noteImageView);
+
+            imageNameTextView = (TextView) itemView.findViewById(R.id.noteTextView);
+        }
+    }
+}
+
+ */
 
 class CustomAdapter1 extends BaseAdapter{
 
@@ -123,4 +222,12 @@ class CustomAdapter1 extends BaseAdapter{
         Picasso.get().load(notes.get(position).getImageUrl()).into(noteImage);
         return view1;
     }
+
+
 }
+
+
+
+
+
+
