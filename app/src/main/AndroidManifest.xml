@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CreateNoteActivity"></activity>
+        <activity android:name=".NotesFragment"></activity>
+        <activity android:name=".CreateNoteActivity" />
         <activity android:name=".GroupSettingsActivity" />
         <activity android:name=".MeetingInfoActivity" />
         <activity android:name=".CreateMeetingActivity" />

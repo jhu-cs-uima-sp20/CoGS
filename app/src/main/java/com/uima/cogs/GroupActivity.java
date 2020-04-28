@@ -28,7 +28,7 @@ public class GroupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group);
         meetingsFrag = new MeetingsFragment();
-        //notesFrag =
+        notesFrag = new NotesFragment();
         toolbar = findViewById(R.id.group_toolbar);
         tabLayout = findViewById(R.id.tabLayout);
 
@@ -61,7 +61,7 @@ public class GroupActivity extends AppCompatActivity {
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 switch (tabLayout.getSelectedTabPosition()) {
                     case 0:
-                        //transaction.replace(R.id.group_fragment_container, notesFrag).commit();
+                        transaction.replace(R.id.group_fragment_container, notesFrag).commit();
                     case 1:
                         transaction.replace(R.id.group_fragment_container, meetingsFrag).commit();
                 }

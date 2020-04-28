@@ -1,26 +1,27 @@
 package com.uima.cogs;
 
-import android.media.Image;
-
 public class Notes {
-    private String date;
-    private Image image;
+    private String name;
+    private String imageUrl;
 
-    public int getDate() {
-        return date;
+    public Notes(String name, String url) {
+        this.name = name;
+        this.imageUrl = url;
+    }
+    public String getName() { return name; }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getImage() {
-        return image;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
-    public void setImage(Image image) {
-        this.image = image;
-    }
 }
 
 
