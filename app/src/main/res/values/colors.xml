@@ -7,4 +7,7 @@
     <color name="dis_white">#81FFFFFF</color>
     <color name="dark">#ffffff</color>
     <color name="grey">#8D8D8D</color>
+    <color name="red">#FF0000</color>
+    <color name="darkGrey">#707070</color>
+
 </resources>

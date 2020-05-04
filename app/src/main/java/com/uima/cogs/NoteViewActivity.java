@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -56,7 +57,9 @@ public class NoteViewActivity extends AppCompatActivity {
         Picasso.get().load(noteURL).into(image);
 
         //icon.setColorFilter(ContextCompat.getColor(getApplicationContext(), android.R.color.darker_gray), PorterDuff.Mode.MULTIPLY);
-        icon.setColorFilter(Color.RED);
+        //icon.setColorFilter(Color.RED);
+        DrawableCompat.setTint(icon.getDrawable(), ContextCompat.getColor(getApplicationContext(), R.color.darkGrey));
+
         icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,7 +79,9 @@ public class NoteViewActivity extends AppCompatActivity {
                 if(dataSnapshot.exists()) {
                     if (dataSnapshot.hasChild(noteId)) {
                         like = true;
-                        icon.setColorFilter(ContextCompat.getColor(getApplicationContext(), android.R.color.holo_orange_light), PorterDuff.Mode.MULTIPLY);
+                        DrawableCompat.setTint(icon.getDrawable(), ContextCompat.getColor(getApplicationContext(), R.color.red));
+
+                        //icon.setColorFilter(ContextCompat.getColor(getApplicationContext(), android.R.color.holo_orange_light), PorterDuff.Mode.MULTIPLY);
                     }
                 }
             }
@@ -96,7 +101,9 @@ public class NoteViewActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(Void aVoid) {
                     like = true;
-                    icon.setColorFilter(ContextCompat.getColor(getApplicationContext(), android.R.color.holo_orange_light), PorterDuff.Mode.MULTIPLY);
+                    DrawableCompat.setTint(icon.getDrawable(), ContextCompat.getColor(getApplicationContext(), R.color.red));
+
+                    //icon.setColorFilter(ContextCompat.getColor(getApplicationContext(), android.R.color.holo_orange_light), PorterDuff.Mode.MULTIPLY);
                     Toast.makeText(getApplicationContext(), "like", Toast.LENGTH_SHORT).show();
 
                 }
@@ -108,7 +115,9 @@ public class NoteViewActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(Void aVoid) {
                     like = false;
-                    icon.setColorFilter(ContextCompat.getColor(getApplicationContext(), android.R.color.darker_gray), PorterDuff.Mode.MULTIPLY);
+                    DrawableCompat.setTint(icon.getDrawable(), ContextCompat.getColor(getApplicationContext(), R.color.darkGrey));
+
+                    //icon.setColorFilter(ContextCompat.getColor(getApplicationContext(), android.R.color.darker_gray), PorterDuff.Mode.MULTIPLY);
                     Toast.makeText(getApplicationContext(), "unlike", Toast.LENGTH_SHORT).show();
                 }
             });
