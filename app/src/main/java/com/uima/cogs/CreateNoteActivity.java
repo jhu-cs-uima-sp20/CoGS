@@ -36,6 +36,8 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 
 public class CreateNoteActivity extends AppCompatActivity {
 
@@ -48,11 +50,13 @@ public class CreateNoteActivity extends AppCompatActivity {
     private String imageUrl;
     private FirebaseStorage noteStorageReference;
     private DatabaseReference noteDatabaseReference;
+    private Date currentTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_note);
+        currentTime = Calendar.getInstance().getTime();
 
         image = findViewById(R.id.noteImage);
         name = findViewById(R.id.noteName);
@@ -68,12 +72,14 @@ public class CreateNoteActivity extends AppCompatActivity {
         uploadNoteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //String noteName = name.getText().toString();
-                //Notes newNote = new Notes();
-                //newNote.setName(noteName);
-                //uploadNote(groupName);
-               // newNote.setImageUrl(imageUrl);
-                uploadNote(groupName);
+                String noteName = name.getText().toString();
+                if(noteName.isEmpty()){
+                    Toast.makeText(CreateNoteActivity.this, "Please Enter A Name", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    uploadNote(groupName, noteName);
+                }
+
             }
         });
 
@@ -117,19 +123,24 @@ public class CreateNoteActivity extends AppCompatActivity {
         }
     }
 
-    public void uploadNote(String groupName) {
+    public void uploadNote(String groupName, final String noteName) {
+        final String noteID = noteDatabaseReference.push().getKey();
         if (filePath != null) {
-            noteStorageReference.getReference().child(groupName).putFile(filePath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            noteStorageReference.getReference().child("Group Notes").child(noteID).putFile(filePath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    String noteName = name.getText().toString();
-                    String noteID = noteDatabaseReference.push().getKey();
-                    String noteUrl = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
-                    Notes note = new Notes();
-                    note.setName(noteName);
-                    note.setImageUrl(noteUrl);
-                    noteDatabaseReference.child(noteID).setValue(note);
-                    Toast.makeText(CreateNoteActivity.this, "Image uploaded successfeully",Toast.LENGTH_SHORT).show();
+
+                    noteStorageReference.getReference().child("Group Notes").child(noteID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            imageUrl = uri.toString();
+                            Notes note = new Notes();
+                            note.setName(noteName);
+                            note.setImageUrl(imageUrl);
+                            noteDatabaseReference.child(noteID).setValue(note);
+                        }
+                    });
+                    Toast.makeText(CreateNoteActivity.this, "Image uploaded successfully",Toast.LENGTH_SHORT).show();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -139,71 +150,12 @@ public class CreateNoteActivity extends AppCompatActivity {
             });
 
         }
-    }
+        else{
 
-
-
-    /*
-    void uploadNote(String groupName){
-        noteStorage.getReference().child("Groups").child(groupName).child("Group Notes").putFile(filePath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                noteStorage.getReference().child("Groups").child(groupName).child("Group Notes").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        imageUrl = uri.toString();
-                        reff.child("imageUrl").setValue(imageUrl);
-                    }
-                });
-
-
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                Toast.makeText(CreateNoteActivity.this, "Error Uploading Image", Toast.LENGTH_SHORT).show();
-                // ...
-            }
-        });
-    }
-
-
-     */
-
-    /*
-    void uploadNote(String groupName) {
-        (filePath != null) {
-            StorageReference noteRef = storageReference.getInstance().getReference().child("Groups").child(groupName).child("Group Notes");
-            noteRef.putFile(filePath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Toast.makeText(CreateNoteActivity.this, "Note Uploaded!!", Toast.LENGTH_SHORT).show();
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(CreateNoteActivity.this, "Note Upload Failed " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
+            Toast.makeText(CreateNoteActivity.this, "Please select an Image", Toast.LENGTH_SHORT).show();
         }
     }
 
-     */
-
-/*
-    public void saveNote(String groupName, Notes note){
-        DatabaseReference noteRef = FirebaseDatabase.getInstance().getReference().child("Groups").child(groupName).child("Group Notes");
-        noteRef.push().setValue(note).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Toast.makeText(getApplicationContext(), "New Note Has Been Successfully Created", Toast.LENGTH_SHORT).show();
-                finish();
-            }
-        });
-
-    }
-
- */
 
 
 }
