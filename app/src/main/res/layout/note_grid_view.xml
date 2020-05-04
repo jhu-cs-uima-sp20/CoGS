@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/gridViewNoteImage"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="130dp"
         android:padding="10dp"
         />
 
@@ -20,6 +20,5 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textSize="15dp"
-        android:gravity="center_horizontal"
-        ></TextView>
+        android:gravity="center_horizontal"/>
 </LinearLayout>

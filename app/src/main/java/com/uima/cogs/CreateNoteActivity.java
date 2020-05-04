@@ -124,7 +124,10 @@ public class CreateNoteActivity extends AppCompatActivity {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     String noteName = name.getText().toString();
                     String noteID = noteDatabaseReference.push().getKey();
-                    Notes note = new Notes(noteName, taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
+                    String noteUrl = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
+                    Notes note = new Notes();
+                    note.setName(noteName);
+                    note.setImageUrl(noteUrl);
                     noteDatabaseReference.child(noteID).setValue(note);
                     Toast.makeText(CreateNoteActivity.this, "Image uploaded successfeully",Toast.LENGTH_SHORT).show();
                 }

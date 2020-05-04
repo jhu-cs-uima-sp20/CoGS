@@ -4,10 +4,6 @@ public class Notes {
     private String name;
     private String imageUrl;
 
-    public Notes(String name, String url) {
-        this.name = name;
-        this.imageUrl = url;
-    }
     public String getName() { return name; }
 
     public void setName(String name) {

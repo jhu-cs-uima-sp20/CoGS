@@ -35,7 +35,7 @@ public class GroupActivity extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         //Once notes is implemented change to notes frag
-        transaction.replace(R.id.group_fragment_container, meetingsFrag).commit();
+        transaction.add(R.id.group_fragment_container, meetingsFrag).commit();
 
         //Delete below after notes is implemented
         TabLayout.Tab tab = tabLayout.getTabAt(1);
@@ -61,9 +61,11 @@ public class GroupActivity extends AppCompatActivity {
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 switch (tabLayout.getSelectedTabPosition()) {
                     case 0:
-                        //transaction.replace(R.id.group_fragment_container, notesFrag).commit();
+                        transaction.replace(R.id.group_fragment_container, notesFrag).addToBackStack(null).commit();
+                        break;
                     case 1:
-                        transaction.replace(R.id.group_fragment_container, meetingsFrag).commit();
+                        transaction.replace(R.id.group_fragment_container, meetingsFrag).addToBackStack(null).commit();
+                        break;
                 }
             }
             @Override

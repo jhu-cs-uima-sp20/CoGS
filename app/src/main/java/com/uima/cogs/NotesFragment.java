@@ -38,8 +38,6 @@ public class NotesFragment extends Fragment {
     private ArrayList<Notes> noteList;
     private CustomAdapter1 customAdapter;
     private DatabaseReference databaseReference;
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
 
 
     public NotesFragment() {
@@ -57,14 +55,10 @@ public class NotesFragment extends Fragment {
         root = inflater.inflate(R.layout.fragment_notes, container, false);
 
         FloatingActionButton fabN = root.findViewById(R.id.floatingActionButtonNote);
-        //recyclerView = root.findViewById(R.id.noteRV);
         Intent intent2 = getActivity().getIntent();
         gName = intent2.getStringExtra("Group Name");
         gv = root.findViewById(R.id.noteGV);
 
-        //recyclerView.setHasFixedSize(true);
-        //recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
         fabN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,56 +68,24 @@ public class NotesFragment extends Fragment {
             }
         });
 
-        /*
-        databaseReference = FirebaseDatabase.getInstance().getReference("Notes").child(gName);
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
 
-                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-
-                    Notes note = postSnapshot.getValue(Notes.class);
-
-                    noteList.add(note);
-                }
-
-                adapter = new RecyclerViewAdapter(getContext(), noteList);
-
-                recyclerView.setAdapter(adapter);
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
-
-         */
-
-       noteList = new ArrayList<>();
+        noteList = new ArrayList<>();
         customAdapter = new CustomAdapter1(noteList, getActivity());
-       gv.setAdapter(customAdapter);
+        gv.setAdapter(customAdapter);
 
-        fabN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), CreateNoteActivity.class);
-                intent.putExtra("Group Name", gName);
-                startActivity(intent);
-            }
-        });
-
-        DatabaseReference noteRef = FirebaseDatabase.getInstance().getReference().child("Groups").child(gName).child("Group Notes");
+        System.out.println("Group Name: "+gName);
+        DatabaseReference noteRef = FirebaseDatabase.getInstance().getReference().child("Notes").child(gName);
         noteRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                customAdapter.notifyDataSetChanged();
-                Notes note = dataSnapshot.getValue(Notes.class);
-                noteList.add(note);
-                System.out.println("Note!!!!!!!!!!!!!!: "+ note.getName());
-                customAdapter.notifyDataSetChanged();
-                gv.setAdapter(customAdapter);
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    Notes notes = postSnapshot.getValue(Notes.class);
+                    System.out.println("Get Data: "+ notes.getName());
+                    noteList.add(0, notes);
+                    //customAdapter.notifyItemInserted(0);
+                    customAdapter.notifyDataSetChanged();
+                }
             }
 
             @Override
@@ -135,61 +97,6 @@ public class NotesFragment extends Fragment {
         return root;
     }
 }
-/*
-class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
-
-    Context context;
-    ArrayList<Notes> notesArrayList;
-
-    public RecyclerViewAdapter(Context context, ArrayList<Notes> TempList) {
-
-        this.notesArrayList = TempList;
-
-        this.context = context;
-    }
-
-    @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.note_view, parent, false);
-
-        ViewHolder viewHolder = new ViewHolder(view);
-
-        return viewHolder;
-    }
-
-    @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        Notes UploadInfo = notesArrayList.get(position);
-
-        holder.imageNameTextView.setText(UploadInfo.getName());
-
-        //Loading image from Glide library.
-        //Glide.with(context).load(UploadInfo.getImageUrl()).into(holder.imageView);
-    }
-
-    @Override
-    public int getItemCount() {
-
-        return notesArrayList.size();
-    }
-
-    class ViewHolder extends RecyclerView.ViewHolder {
-
-        public ImageView imageView;
-        public TextView imageNameTextView;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-
-            imageView = (ImageView) itemView.findViewById(R.id.noteImageView);
-
-            imageNameTextView = (TextView) itemView.findViewById(R.id.noteTextView);
-        }
-    }
-}
-
- */
 
 class CustomAdapter1 extends BaseAdapter{
 
@@ -225,9 +132,3 @@ class CustomAdapter1 extends BaseAdapter{
 
 
 }
-
-
-
-
-
-
