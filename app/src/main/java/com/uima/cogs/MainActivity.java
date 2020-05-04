@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private Button groupPageBtn;
     private Fragment groupFrag;
     private Fragment homeFeedFrag;
+    private Fragment likeFrag;
     private FrameLayout fragment_container;
     private Toolbar toolbar;
     private BottomNavigationView bottomNavigation;
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         fragment_container =findViewById(R.id.fragment_container);
         groupFrag = new GroupListFragment();
         homeFeedFrag = new HomeFeedFragment();
+        likeFrag = new LikedFragment();
        if(currentUser==null){
 
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
@@ -147,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
                 curView = 1;
                 break;
             case 2: //Implement later Liked Notes
-                //transaction.replace(R.id.fragment_container, groupFrag).commit();
+                transaction.replace(R.id.fragment_container, likeFrag).commit();
                 toolbar.setTitle("Liked");
                 curView = 2;
                 break;

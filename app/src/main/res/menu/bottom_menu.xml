@@ -11,7 +11,7 @@
         android:title="Home" />-->
     <item
         android:id="@+id/nav_liked"
-        android:enabled="false"
+        android:enabled="true"
         android:icon="@drawable/ic_liked_white_24dp"
         android:title="Liked" />
 </menu>
