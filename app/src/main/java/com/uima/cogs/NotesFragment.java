@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -79,6 +80,8 @@ public class NotesFragment extends Fragment {
         noteRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                noteList.clear();
+                customAdapter.notifyDataSetChanged();
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     Notes notes = postSnapshot.getValue(Notes.class);
                     System.out.println("Get Data: "+ notes.getName());
@@ -90,6 +93,22 @@ public class NotesFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v,
+                                    int position, long id) {
+
+                System.out.println("Position!!!!!!!!1: "+position);
+                Intent intent = new Intent(getActivity(), NoteViewActivity.class);
+                Notes viewNote = noteList.get(position);
+                intent.putExtra("Notes Name", viewNote.getName());
+                intent.putExtra("Notes URL", viewNote.getImageUrl());
+                intent.putExtra("Notes ID", viewNote.getNoteId());
+                startActivity(intent);
 
             }
         });

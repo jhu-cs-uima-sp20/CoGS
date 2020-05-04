@@ -137,7 +137,9 @@ public class CreateNoteActivity extends AppCompatActivity {
                             Notes note = new Notes();
                             note.setName(noteName);
                             note.setImageUrl(imageUrl);
+                            note.setNoteId(noteID);
                             noteDatabaseReference.child(noteID).setValue(note);
+                            finish();
                         }
                     });
                     Toast.makeText(CreateNoteActivity.this, "Image uploaded successfully",Toast.LENGTH_SHORT).show();
