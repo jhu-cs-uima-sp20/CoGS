@@ -1,15 +1,5 @@
 
-Authentication Test: 
-- Email: Aly123@gmail.com Passwords: helloworld 
-- Email: user2@gmail.com  Password: helloworld
 
-Search Group Test: 
-- AS.123.123 
-- AS.200.200 
-
-Errors: 
-- Need to work on dynamiccaly updating the the meeting on the group recycler view section 
-- Need to complete the implementation of the Notes Page. 
 
 App Changes: 
 - Plan to exclude the homefeed page. 
